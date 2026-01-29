@@ -1,0 +1,234 @@
+/* Index Page Styles */
+
+:root {
+    --primary-color: #ffdd57;
+    --secondary-color: #ff6b6b;
+    --dark-bg: #121212;
+    --light-text: #e0e0e0;
+    --card-bg: #1e1e1e;
+    --border-color: #2a2a2a;
+}
+
+.index-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Hero Section */
+.index-hero {
+    background: linear-gradient(135deg, rgba(255, 221, 87, 0.1), rgba(255, 107, 107, 0.1));
+    padding: 40px 20px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.index-hero-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.index-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 10px 0;
+    letter-spacing: -1px;
+}
+
+.index-subtitle {
+    font-size: 1.1rem;
+    color: var(--light-text);
+    margin: 0;
+    font-weight: 300;
+}
+
+/* Posts Section */
+.index-posts-wrapper {
+    flex: 1;
+    padding: 40px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.index-posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    width: 100%;
+}
+
+/* Post Card */
+.index-post-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.index-post-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 10px 30px rgba(255, 221, 87, 0.15);
+    transform: translateY(-5px);
+}
+
+.index-post-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.index-post-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background-color: var(--border-color);
+}
+
+.index-post-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.index-post-card:hover .index-post-image img {
+    transform: scale(1.05);
+}
+
+.index-post-content {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.index-post-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0 0 15px 0;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.index-post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: var(--light-text);
+}
+
+.index-post-time {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--light-text);
+}
+
+.index-post-time i {
+    color: var(--primary-color);
+    font-size: 0.85rem;
+}
+
+.index-post-category {
+    background-color: rgba(255, 221, 87, 0.15);
+    color: var(--primary-color);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* Empty State */
+.index-empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--light-text);
+}
+
+.index-empty p {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .index-posts-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .index-hero {
+        padding: 30px 15px;
+    }
+
+    .index-title {
+        font-size: 2rem;
+    }
+
+    .index-subtitle {
+        font-size: 1rem;
+    }
+
+    .index-posts-wrapper {
+        padding: 25px 15px;
+    }
+
+    .index-posts-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+    }
+
+    .index-post-image {
+        height: 150px;
+    }
+
+    .index-post-content {
+        padding: 15px;
+    }
+
+    .index-post-title {
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .index-title {
+        font-size: 1.5rem;
+    }
+
+    .index-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .index-posts-wrapper {
+        padding: 20px 10px;
+    }
+
+    .index-posts-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .index-post-image {
+        height: 180px;
+    }
+}
+

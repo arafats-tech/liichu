@@ -1,0 +1,70 @@
+<%- include('meta', { currentPage: 'home' }) %>
+<%- include('header') %>
+
+<main role="main">
+<div class="index-wrapper">
+  <div class="index-hero">
+    <div class="index-hero-content">
+      <h1 class="index-title">Arafat's Tech</h1>
+      <p class="index-subtitle">Explore amazing tech content and updates</p>
+    </div>
+  </div>
+
+  <div class="index-posts-wrapper">
+    <% if (posts.length > 0) { %>
+      <div class="index-posts-grid">
+        <% posts.forEach(post => { 
+          const createdAt = new Date(post.createdAt);
+          const timeAgo = (function() {
+            const now = new Date();
+            const seconds = Math.floor((now - createdAt) / 1000);
+            let interval = Math.floor(seconds / 31536000);
+            if (interval > 1) return interval + ' years ago';
+            interval = Math.floor(seconds / 2592000);
+            if (interval > 1) return interval + ' months ago';
+            interval = Math.floor(seconds / 86400);
+            if (interval > 1) return interval + ' days ago';
+            interval = Math.floor(seconds / 3600);
+            if (interval > 1) return interval + ' hours ago';
+            interval = Math.floor(seconds / 60);
+            if (interval > 1) return interval + ' minutes ago';
+            return seconds < 1 ? 'Just now' : seconds + ' seconds ago';
+          })();
+        %>
+          <div class="index-post-card">
+            <a href="/p/<%= post.slug %>" class="index-post-link">
+              <div class="index-post-image">
+                <% let thumbSrc = post.featured_image || null; %>
+                <% if (!thumbSrc) { %>
+                  <!-- Try server-generated OG image by slug -->
+                  <img src="/og/app/<%= post.slug %>.png" alt="<%= post.title %>" loading="lazy" />
+                <% } else { %>
+                  <img src="<%= thumbSrc %>" alt="<%= post.title %>" loading="lazy" />
+                <% } %>
+              </div>
+              <div class="index-post-content">
+                <h3 class="index-post-title"><%= post.title %></h3>
+                <div class="index-post-meta">
+                  <span class="index-post-time">
+                    <i class="far fa-calendar"></i> <%= timeAgo %>
+                  </span>
+                  <% if (post.category) { %>
+                    <span class="index-post-category"><%= post.category %></span>
+                  <% } %>
+                </div>
+              </div>
+            </a>
+          </div>
+        <% }); %>
+      </div>
+    <% } else { %>
+      <div class="index-empty">
+        <p>More content coming soon...</p>
+      </div>
+    <% } %>
+  </div>
+  </div>
+</main>
+
+<%- include('footer') %>
+

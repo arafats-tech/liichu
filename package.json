@@ -1,0 +1,39 @@
+{
+  "name": "arnms-app",
+  "version": "1.0.0",
+  "description": "A modern Node.js application for app.arnms.com",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "body-parser": "^2.2.2",
+    "canvas": "^3.2.1",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "ejs": "^4.0.1",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.2.1",
+    "express-session": "^1.17.3",
+    "express-validator": "^7.3.1",
+    "helmet": "^8.1.0",
+    "morgan": "^1.10.0",
+    "multer": "^2.0.2",
+    "mysql2": "^3.2.0",
+    "serve-favicon": "^2.5.0",
+    "slugify": "^1.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^9.39.2",
+    "nodemon": "^3.1.11",
+    "prettier": "^3.8.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "author": "ARAFAT RAHMAN",
+  "license": "MIT"
+}

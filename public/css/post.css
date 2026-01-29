@@ -1,0 +1,614 @@
+/* ==========================================
+   Post Page Styles - Complete Redesign
+   ========================================== */
+
+:root {
+    --primary-color: #ffdd57;
+    --secondary-color: #ff6b6b;
+    --dark-bg: #121212;
+    --light-text: #e0e0e0;
+    --muted-text: #9e9e9e;
+    --border-color: #2a2a2a;
+    --card-bg: #1e1e1e;
+    --max-width: 800px;
+}
+
+/* Reset conflicting Bootstrap styles for post pages */
+body {
+    background-color: var(--dark-bg) !important;
+    color: var(--light-text) !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+}
+
+/* ==========================================
+   Breadcrumb Navigation
+   ========================================== */
+.post__breadcrumb {
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 0;
+    font-size: 0.9rem;
+    position: sticky;
+    top: 48px;
+    z-index: 10;
+}
+
+.post__breadcrumb-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.post__breadcrumb a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.post__breadcrumb a:hover {
+    color: var(--secondary-color);
+}
+
+.post__breadcrumb span {
+    color: var(--muted-text);
+}
+
+.post__breadcrumb-separator {
+    color: var(--muted-text);
+    margin: 0 0.3rem;
+@media (max-width: 768px) {
+    .post__breadcrumb {
+        padding: 0.75rem 0;
+    }
+    
+    .post__breadcrumb-container {
+        padding: 0 1rem;
+        font-size: 0.85rem;
+    }
+}
+ 
+}
+
+/* ==========================================
+   Main Wrapper & Container
+   ========================================== */
+.post__wrapper {
+    min-height: calc(100vh - 200px);
+    padding: 2rem 1.5rem;
+}
+
+.post__container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0;
+}
+
+/* ==========================================
+   Post Header Section
+   ========================================== */
+.post__header {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.post__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    color: #fff;
+    letter-spacing: -0.5px;
+    word-wrap: break-word;
+}
+
+@media (max-width: 768px) {
+    .post__title {
+        font-size: 1.6rem;
+    }
+}
+
+/* ==========================================
+   Post Meta Information
+   ========================================== */
+.post__meta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.post__meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--muted-text);
+    transition: color 0.3s ease;
+}
+
+.post__meta-item:hover {
+    color: var(--primary-color);
+}
+
+.post__meta-item i {
+    color: var(--primary-color);
+    font-size: 1rem;
+}
+
+/* Category Badge */
+.post__category-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary-color), #ffd700);
+    color: #000;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: capitalize;
+}
+
+/* Post Excerpt */
+.post__excerpt {
+    font-size: 1.1rem;
+    color: var(--light-text);
+    font-style: italic;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* ==========================================
+   Post Media (Image & Video)
+   ========================================== */
+.post__media {
+    margin: 3rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+/* Image Container */
+.post__image-container {
+    width: 100%;
+    max-width: 700px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.post__image {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.post__image:hover {
+    transform: scale(1.02);
+}
+
+/* Video Container */
+.post__video-container {
+    width: 100%;
+    max-width: 700px;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    background-color: #000;
+}
+
+.post__video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+@media (max-width: 768px) {
+    .post__image-container,
+    .post__video-container {
+        max-width: 100%;
+    }
+}
+
+/* ==========================================
+   Post Content
+   ========================================== */
+.post__content {
+    font-size: 1rem;
+    line-height: 1.9;
+    margin: 3rem 0;
+    color: var(--light-text);
+}
+
+.post__content p {
+    margin-bottom: 1.5rem;
+}
+
+.post__content h2 {
+    font-size: 1.8rem;
+    margin: 2rem 0 1rem 0;
+    color: #fff;
+    font-weight: 600;
+}
+
+.post__content h3 {
+    font-size: 1.4rem;
+    margin: 1.5rem 0 0.8rem 0;
+    color: #fff;
+    font-weight: 600;
+}
+
+.post__content h4,
+.post__content h5,
+.post__content h6 {
+    margin: 1rem 0 0.5rem 0;
+    color: #fff;
+    font-weight: 600;
+}
+
+.post__content strong {
+    color: var(--primary-color);
+}
+
+.post__content ul,
+.post__content ol {
+    margin: 1.5rem 0 1.5rem 2rem;
+}
+
+.post__content li {
+    margin-bottom: 0.5rem;
+}
+
+.post__content blockquote {
+    border-left: 4px solid var(--primary-color);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    color: var(--muted-text);
+    font-style: italic;
+}
+
+.post__content a {
+    color: var(--primary-color);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.post__content a:hover {
+    border-bottom-color: var(--primary-color);
+    color: #ffd700;
+}
+
+.post__content code {
+    background-color: var(--card-bg);
+    color: #4dd0e1;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+.post__content pre {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    overflow-x: auto;
+    line-height: 1.4;
+}
+
+.post__content pre code {
+    padding: 0;
+    background: none;
+    color: #ddd;
+}
+
+.post__content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.post__content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    border: 1px solid var(--border-color);
+}
+
+.post__content table th,
+.post__content table td {
+    padding: 0.8rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.post__content table th {
+    background-color: var(--card-bg);
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.post__content table tr:hover {
+    background-color: var(--card-bg);
+}
+
+/* ==========================================
+   Tags Section
+   ========================================== */
+.post__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin: 2rem 0;
+    padding: 2rem 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.post__tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--card-bg);
+    color: var(--primary-color);
+    text-decoration: none;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.post__tag:hover {
+    background-color: var(--primary-color);
+    color: #000;
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.post__tag i {
+    font-size: 0.8rem;
+}
+
+/* ==========================================
+   Divider
+   ========================================== */
+.post__divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+    margin: 3rem 0;
+}
+
+/* ==========================================
+   Social Sharing Section
+   ========================================== */
+.post__sharing {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 3rem 0;
+}
+
+.post__sharing-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #fff;
+}
+
+.post__sharing-title i {
+    color: var(--primary-color);
+}
+
+.post__sharing-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.post__share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    font-size: 0.95rem;
+}
+
+.post__share-btn i {
+    font-size: 1.1rem;
+}
+
+/* Facebook */
+.post__share-facebook {
+    background-color: #1877f2;
+    color: white;
+}
+
+.post__share-facebook:hover {
+    background-color: #0a66c2;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(24, 119, 242, 0.4);
+}
+
+/* Twitter */
+.post__share-twitter {
+    background-color: #000;
+    color: white;
+    border-color: #444;
+}
+
+.post__share-twitter:hover {
+    background-color: #1a1a1a;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* WhatsApp */
+.post__share-whatsapp {
+    background-color: #25d366;
+    color: white;
+}
+
+.post__share-whatsapp:hover {
+    background-color: #20ba5a;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+}
+
+/* Email */
+.post__share-email {
+    background-color: var(--muted-text);
+    color: white;
+}
+
+.post__share-email:hover {
+    background-color: #b0bec5;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(158, 158, 158, 0.4);
+}
+
+@media (max-width: 768px) {
+    .post__sharing {
+        padding: 1.5rem;
+    }
+
+    .post__sharing-buttons {
+        flex-direction: column;
+    }
+
+    .post__share-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* ==========================================
+   Comments Section
+   ========================================== */
+.post__reactions {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.post__comments {
+    margin: 3rem 0;
+}
+
+.post__comments-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    color: #fff;
+}
+
+.post__comments-title i {
+    color: var(--primary-color);
+}
+
+.fb-comments {
+    width: 100% !important;
+}
+
+/* ==========================================
+   Footer Section
+   ========================================== */
+.post__footer {
+    display: flex;
+    justify-content: center;
+    padding: 3rem 0;
+    margin-top: 3rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.post__btn-home {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, var(--primary-color), #ffd700);
+    color: #000;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 221, 87, 0.3);
+}
+
+.post__btn-home:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 221, 87, 0.5);
+    background: linear-gradient(135deg, #ffd700, var(--primary-color));
+}
+
+@media (max-width: 768px) {
+    .post__btn-home {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.95rem;
+    }
+}
+
+/* ==========================================
+   Animations
+   ========================================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================
+   Utilities for Common Content Styles
+   ========================================== */
+.text-center {
+    text-align: center;
+}
+
+.text-muted {
+    color: var(--muted-text);
+}
+
+.highlight {
+    background-color: rgba(255, 221, 87, 0.2);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    color: var(--primary-color);
+}

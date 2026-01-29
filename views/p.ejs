@@ -1,0 +1,189 @@
+<%- include('meta', { 
+    currentPage: 'post', 
+    postSlug: post.slug, 
+    postTitle: post.title, 
+    postContent: post.content 
+}) %>
+
+    <%- include('header') %>
+
+    <main role="main">
+
+    <!-- Breadcrumb Navigation -->
+    <div class="post__breadcrumb">
+        <div class="post__breadcrumb-container">
+            <a href="/"><i class="fas fa-home"></i> Home</a>
+            <span class="post__breadcrumb-separator">/</span>
+            <span><%= post.category || 'General' %></span>
+            <span class="post__breadcrumb-separator">/</span>
+            <span><%= post.title %></span>
+        </div>
+    </div>
+
+    <div class="post__wrapper">
+        <!-- Main Content Container -->
+        <div class="post__container">
+            
+            <!-- Post Header Section -->
+            <div class="post__header">
+                <h1 class="post__title"><%= post.title %></h1>
+                
+                <!-- Post Meta Information -->
+                <div class="post__meta">
+                    <div class="post__meta-item">
+                        <i class="far fa-calendar"></i>
+                        <span id="postDate"></span>
+                    </div>
+                    <div class="post__meta-item">
+                        <i class="far fa-clock"></i>
+                        <span id="postTime"></span>
+                    </div>
+                    <div class="post__meta-item">
+                        <i class="far fa-eye"></i>
+                        <span id="readTime">5 min read</span>
+                    </div>
+                    <% if (post.category) { %>
+                        <div class="post__meta-item">
+                            <span class="post__category-badge"><%= post.category %></span>
+                        </div>
+                    <% } %>
+                </div>
+
+                <% if (post.excerpt) { %>
+                    <p class="post__excerpt"><%= post.excerpt %></p>
+                <% } %>
+            </div>
+
+            <!-- Featured Image/Video -->
+            <% if (post.image) { %>
+                <div class="post__media">
+                    <% if (post.image.endsWith('.mp4')) { %>
+                        <div class="post__video-container">
+                            <video controls preload="metadata" class="post__video">
+                                <source src="<%= post.image %>" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    <% } else if (post.image.endsWith('.jpg') || post.image.endsWith('.png') || post.image.endsWith('.gif')) { %>
+                        <div class="post__image-container">
+                            <img src="<%= post.image %>" alt="<%= post.title %>" class="post__image">
+                        </div>
+                    <% } %>
+                </div>
+            <% } %>
+
+            <!-- Post Content -->
+            <div class="post__content">
+                <%- post.content %>
+            </div>
+
+            <!-- Post Tags -->
+            <% if (post.tags) { %>
+                <div class="post__tags">
+                    <% post.tags.split(',').forEach(tag => { %>
+                        <a href="/search?tag=<%= encodeURIComponent(tag.trim()) %>" class="post__tag">
+                            <i class="fas fa-tag"></i> <%= tag.trim() %>
+                        </a>
+                    <% }); %>
+                </div>
+            <% } %>
+
+            <!-- Divider -->
+            <hr class="post__divider">
+
+            <!-- Social Sharing Section -->
+            <div class="post__sharing">
+                <div class="post__sharing-title">
+                    <i class="fas fa-share-alt"></i> Share This Post
+                </div>
+                <div class="post__sharing-buttons">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://iarafat.store/p/<%= post.slug %>" target="_blank" class="post__share-btn post__share-facebook" title="Share on Facebook">
+                        <i class="fab fa-facebook-f"></i> Facebook
+                    </a>
+                    <a href="https://twitter.com/intent/tweet?url=https://iarafat.store/p/<%= post.slug %>&text=<%= post.title %>" target="_blank" class="post__share-btn post__share-twitter" title="Share on Twitter">
+                        <i class="fab fa-twitter"></i> Twitter
+                    </a>
+                    <a href="https://wa.me/?text=Check this out: <%= post.title %> https://iarafat.store/p/<%= post.slug %>" target="_blank" class="post__share-btn post__share-whatsapp" title="Share on WhatsApp">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                    <a href="mailto:?subject=<%= post.title %>&body=Check out this post: https://iarafat.store/p/<%= post.slug %>" class="post__share-btn post__share-email" title="Share via Email">
+                        <i class="fas fa-envelope"></i> Email
+                    </a>
+                </div>
+            </div>
+
+            <!-- Reactions -->
+            <div class="post__reactions">
+                <div class="sharethis-inline-reaction-buttons"></div>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="post__comments">
+                <h3 class="post__comments-title">
+                    <i class="fas fa-comments"></i> Comments
+                </h3>
+                <div class="fb-comments" 
+                    data-href="https://iarafat.store/p/<%= post.slug %>" 
+                    data-width="100%" 
+                    data-numposts="10" 
+                    data-order-by="time">
+                </div>
+            </div>
+
+            <!-- Back to Home Button -->
+            <div class="post__footer">
+                <a href="/" class="post__btn-home">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script defer src="https://static.addtoany.com/menu/page.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Format post date and time
+        const createdAt = new Date("<%= post.createdAt %>");
+        
+        // Format date
+        const options = {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            weekday: 'short'
+        };
+        document.getElementById('postDate').textContent = createdAt.toLocaleDateString('en-US', options);
+        
+        // Format time since posted
+        function timeSince(date) {
+            const seconds = Math.floor((new Date() - date) / 1000);
+            let interval = Math.floor(seconds / 31536000);
+            if (interval >= 1) return interval + " year" + (interval > 1 ? "s" : "") + " ago";
+            interval = Math.floor(seconds / 2592000);
+            if (interval >= 1) return interval + " month" + (interval > 1 ? "s" : "") + " ago";
+            interval = Math.floor(seconds / 86400);
+            if (interval >= 1) return interval + " day" + (interval > 1 ? "s" : "") + " ago";
+            interval = Math.floor(seconds / 3600);
+            if (interval >= 1) return interval + " hour" + (interval > 1 ? "s" : "") + " ago";
+            interval = Math.floor(seconds / 60);
+            if (interval >= 1) return interval + " minute" + (interval > 1 ? "s" : "") + " ago";
+            return "Just now";
+        }
+        document.getElementById('postTime').textContent = timeSince(createdAt);
+        
+        // Calculate and display reading time
+        function calculateReadingTime() {
+            const content = document.querySelector('.post__content');
+            if (!content) return 5;
+            const text = content.innerText;
+            const wordCount = text.split(/\s+/).length;
+            const readTime = Math.ceil(wordCount / 200); // Average reading speed: 200 words/min
+            return Math.max(1, readTime);
+        }
+        document.getElementById('readTime').textContent = calculateReadingTime() + ' min read';
+    </script>
+    
+    </main>
+
+    <%- include('footer') %>
