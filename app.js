@@ -230,13 +230,21 @@ const sanitizeTitle = (title) => {
         .toLowerCase();
 };
 
-// MySQL connection pool
-const db = mysql.createPool({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-});
+// Database connection pool - support both local MySQL and Render PostgreSQL
+let db;
+if (process.env.DATABASE_URL) {
+    // Render PostgreSQL: parse connection string
+    const connectionString = process.env.DATABASE_URL;
+    db = mysql.createPool(connectionString);
+} else {
+    // Local MySQL: use env variables
+    db = mysql.createPool({
+        host: process.env.DB_HOST || 'localhost',
+        user: process.env.DB_USER || 'root',
+        password: process.env.DB_PASSWORD || '',
+        database: process.env.DB_NAME || 'my_database',
+    });
+}
 
 // Ensure posts table has all necessary columns (run migration on startup)
 const ensurePostsSchema = async () => {
