@@ -233,9 +233,18 @@ const sanitizeTitle = (title) => {
 // Database connection pool - support both local MySQL and Render PostgreSQL
 let db;
 if (process.env.DATABASE_URL) {
-    // Render PostgreSQL: parse connection string
-    const connectionString = process.env.DATABASE_URL;
-    db = mysql.createPool(connectionString);
+    // Render PostgreSQL: parse connection string postgresql://user:password@host:port/dbname
+    const url = new URL(process.env.DATABASE_URL);
+    db = mysql.createPool({
+        host: url.hostname,
+        user: url.username,
+        password: url.password,
+        database: url.pathname.slice(1), // Remove leading /
+        port: url.port || 5432,
+        waitForConnections: true,
+        connectionLimit: 10,
+        queueLimit: 0,
+    });
 } else {
     // Local MySQL: use env variables
     db = mysql.createPool({
